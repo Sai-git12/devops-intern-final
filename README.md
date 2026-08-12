@@ -49,11 +49,63 @@ Defines how the Docker image is created. It uses Python 3.11-slim, creates an `/
 
 Python application file executed directly and also through the Docker container and CI pipeline.
 
-## Docker Usage
+## Git and GitHub Usage
 
-The Dockerfile uses the `python:3.11-slim` base image.
+Git and GitHub are used for version control and project management. Project files are stored in the GitHub repository, and changes are committed to the main branch.
 
-To build the Docker image:
+## GitHub Actions CI Pipeline
+
+The CI pipeline is configured in `.github/workflows/ci.yml`.
+
+The pipeline:
+
+1. Runs when changes are pushed to the `main` branch.
+2. Uses an Ubuntu runner.
+3. Checks out the repository.
+4. Sets up Python 3.11.
+5. Runs `hello.py`.
+
+## Monitoring
+
+The `monitoring/loki_setup.txt` file contains the setup information for Loki-based monitoring.
+
+## Nomad
+
+The `nomad/hello.nomad` file contains the Nomad job configuration used in the project.
+
+## Setup and Run
+
+### Run the Python application
+
+```bash
+python hello.py
+```
+
+### Run with Docker
 
 ```bash
 docker build -t devops-intern-final .
+```
+
+```bash
+docker run --rm devops-intern-final
+```
+
+### Run CI Pipeline
+
+Push changes to the `main` branch. The GitHub Actions workflow will automatically run.
+
+## Work Completed
+
+- Created a Python application.
+- Created a Dockerfile to containerize the application.
+- Added GitHub Actions CI automation.
+- Added Loki monitoring setup documentation.
+- Added Nomad job configuration.
+- Added a Linux system information script.
+- Used Git and GitHub for version control.
+- Added project documentation and usage instructions.
+
+## Internship Submission
+
+This repository contains my completed DevOps internship project, including the application, Docker configuration, CI pipeline, monitoring documentation, Nomad configuration, scripts, and project documentation.
