@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This repository contains the work completed as part of my DevOps internship. The project includes containerization, monitoring, automation scripts, and related DevOps configuration files.
+This repository contains my DevOps internship final project. It demonstrates containerization, Python application execution, monitoring setup, Nomad configuration, system information scripting, and CI automation using GitHub Actions.
 
 ## Author
 
@@ -14,47 +14,46 @@ August 12, 2026
 
 ## Technologies Used
 
+- Python 3.11
 - Docker
-- Terraform
 - Git
 - GitHub
-- Python
-- Nomad
+- GitHub Actions
+- HashiCorp Nomad
+- Grafana Loki
+- Bash/Shell scripting
 
 ## Project Structure
 
-### Dockerfile
-Contains the instructions required to build the Docker container image for the project.
+### `.github/workflows/ci.yml`
 
-### monitoring/
-Contains files related to monitoring and observability of the application or services.
+Contains the GitHub Actions CI pipeline. The workflow runs when changes are pushed to the `main` branch. It checks out the repository, sets up Python 3.11, and runs `hello.py`.
 
-### nomad/
-Contains configuration files related to HashiCorp Nomad and service deployment.
+### `monitoring/loki_setup.txt`
 
-### scripts/
-Contains automation and utility scripts used for the project.
+Contains setup information for Loki-based monitoring.
 
-### hello.py
-A Python file used as part of the project.
+### `nomad/hello.nomad`
 
-## Work Completed
+Contains the Nomad job configuration used for the project.
 
-- Created and organized the DevOps project repository.
-- Added Docker configuration using a Dockerfile.
-- Organized monitoring and Nomad configuration files.
-- Added project scripts and Python files.
-- Used Git and GitHub for version control and project submission.
-- Documented the project structure and setup information in this README.
+### `scripts/sysinfo.sh`
 
-## Setup and Usage
+A shell script used to collect and display system information.
 
-1. Clone the repository.
-2. Review the Dockerfile and project configuration files.
-3. Install the required DevOps tools.
-4. Follow the configuration files and scripts provided in the repository.
-5. Run the required services according to the project configuration.
+### `Dockerfile`
 
-## Internship Submission
+Defines how the Docker image is created. It uses Python 3.11-slim, creates an `/app` working directory, copies `hello.py` into the container, and runs the Python application when the container starts.
 
-This repository is submitted as part of my DevOps internship work and contains the project files and documentation required for the submission.
+### `hello.py`
+
+Python application file executed directly and also through the Docker container and CI pipeline.
+
+## Docker Usage
+
+The Dockerfile uses the `python:3.11-slim` base image.
+
+To build the Docker image:
+
+```bash
+docker build -t devops-intern-final .
