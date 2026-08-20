@@ -21,6 +21,9 @@ jobs:
       - name: Run hello.py
         run: python hello.py
 
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+
       - name: Check logs for unmasked PII
         run: |
           python hello.py > output.log 2>&1
