@@ -14,9 +14,15 @@ job "hello-devops" {
     task "hello-task" {
       driver = "docker"
 
-      config {
-        image = "hello-devops:latest"
-      }
+     config {
+  image = "hello-devops:latest"
+
+  force_pull = false
+
+  volumes = [
+    "/tmp/nomad-hello-data:/app/data"
+  ]
+}
 
       resources {
         cpu    = 100
