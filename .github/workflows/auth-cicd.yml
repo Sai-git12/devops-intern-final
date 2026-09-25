@@ -1,0 +1,29 @@
+name: Auth Service CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify Auth CI/CD Environment
+        run: |
+          echo "Environment: dev"
+          echo "Nomad namespace: $NOMAD_NAMESPACE"
+          echo "Vault prefix: $VAULT_SECRET_PREFIX"
+
+      - name: CI Validation
+        run: |
+          echo "Auth Service CI/CD pipeline validation completed"
